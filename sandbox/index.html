@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sandbox Test Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+        .box { border: 1px solid #ccc; padding: 15px; border-radius: 5px; max-width: 600px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Sandbox Testing Area</h2>
+        <p>Đây là trang HTML thử nghiệm giao diện hoặc Fetch API của bạn.</p>
+        <button id="btnClick">Bấm vào đây để test JS</button>
+        <div id="result" style="margin-top: 15px; color: green; font-weight: bold;"></div>
+    </div>
+
+    <script>
+        document.getElementById('btnClick').addEventListener('click', () => {
+            document.getElementById('result').textContent = 'JavaScript đang hoạt động hoàn hảo!';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!-- 07_javascript_ajax_json/examples/live_search.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Search Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #f4f4f4; }
+        #loading { display: none; color: blue; font-style: italic; }
+    </style>
+</head>
+<body>
+    <h2>Tìm Kiếm Sản Phẩm Thời Gian Thực</h2>
+    <input type="text" id="searchInput" placeholder="Nhập tên sản phẩm..." style="width: 300px; padding: 8px;">
+    <span id="loading"> Đang tìm kiếm...</span>
+
+    <table>
+        <thead>
+            <tr><th>Mã SP</th><th>Tên sản phẩm</th><th>Giá bán</th></tr>
+        </thead>
+        <tbody id="resultBody">
+            <tr><td colspan="3">Nhập từ khóa để tìm kiếm...</td></tr>
+        </tbody>
+    </table>
+
+    <script>
+        function debounce(fn, delay = 300) {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn(...args), delay);
+            };
+        }
+
+        const inputEl = document.getElementById('searchInput');
+        const tbodyEl = document.getElementById('resultBody');
+        const loadingEl = document.getElementById('loading');
+
+        async function doSearch(keyword) {
+            loadingEl.style.display = 'inline';
+            try {
+                // Trong thực tế sẽ gọi file api_products.php
+                const res = await fetch(`api_products.php?kw=${encodeURIComponent(keyword)}`);
+                if (!res.ok) throw new Error('Mạng bị lỗi hoặc server từ chối');
+                const products = await res.json();
+
+                tbodyEl.textContent = ''; // Clear an toàn
+                if (products.length === 0) {
+                    tbodyEl.innerHTML = '<tr><td colspan="3">Không có sản phẩm nào phù hợp!</td></tr>';
+                    return;
+                }
+
+                products.forEach(p => {
+                    const tr = document.createElement('tr');
+
+                    const tdId = document.createElement('td');
+                    tdId.textContent = p.id;
+
+                    const tdName = document.createElement('td');
+                    tdName.textContent = p.name; // Chống XSS an toàn
+
+                    const tdPrice = document.createElement('td');
+                    tdPrice.textContent = Number(p.price).toLocaleString('vi-VN') + ' đ';
+
+                    tr.appendChild(tdId);
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdPrice);
+                    tbodyEl.appendChild(tr);
+                });
+            } catch (err) {
+                tbodyEl.innerHTML = `<tr><td colspan="3" style="color: red;">Lỗi: ${err.message}</td></tr>`;
+            } finally {
+                loadingEl.style.display = 'none';
+            }
+        }
+
+        inputEl.addEventListener('input', debounce((e) => {
+            doSearch(e.target.value.trim());
+        }, 300));
+    </script>
+</body>
+</html>

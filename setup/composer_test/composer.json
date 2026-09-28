@@ -1,0 +1,9 @@
+{
+    "name": "mnm/composer-test",
+    "description": "Minimal PSR-4 Autoload test for Open Source Exam Training",
+    "autoload": {
+        "psr-4": {
+            "TestApp\\": "src/"
+        }
+    }
+}
