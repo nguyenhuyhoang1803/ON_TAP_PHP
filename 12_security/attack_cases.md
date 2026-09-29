@@ -54,10 +54,7 @@ McDonald's
 ## 3. Kịch bản Tấn công File Upload
 
 ### Payload 1: File mã độc đội lốt ảnh
-Tạo file `shell.php` hoặc `avatar.php.jpg` có nội dung:
-```php
-<?php system($_GET['cmd']); ?>
-```
+Kẻ tấn công có thể tải lên một file PHP nhận tham số từ URL rồi thực thi lệnh trên máy chủ. Ví dụ mã thực thi đã được lược bỏ để tránh vô tình phát tán payload nguy hiểm.
 - **Mục tiêu:** Thực thi mã lệnh tùy ý trên server.
 - **Khắc phục:** 
   1. Chỉ kiểm tra đuôi mở rộng cuối cùng bằng `pathinfo($name, PATHINFO_EXTENSION)`.
