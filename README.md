@@ -21,6 +21,7 @@ Môi trường chuẩn của phòng thi:
 opensource_exam_training/
 │
 ├── README.md                  # Hướng dẫn tổng quan & quy trình học (BẠN ĐANG Ở ĐÂY)
+├── CACH_HOC.md                # Quy trình học từng chủ đề và lịch luyện tập hằng ngày
 ├── ROADMAP.md                 # Lộ trình 7 giai đoạn học cấp tốc theo mức độ ưu tiên
 ├── PROGRESS.md                # Bảng theo dõi tiến độ, điểm số checkpoint và điểm yếu
 ├── CHEATSHEET.md              # Sổ tay tóm tắt cú pháp tối giản đọc 10 phút trước giờ thi
@@ -91,4 +92,4 @@ Khi học bất kỳ bài nào, chúng ta đi qua chu trình 7 bước:
 
 # BẮT ĐẦU Ở ĐÂY
 
-Hãy mở file [ROADMAP.md](file:///d:/MNM/OnTap/opensource_exam_training/ROADMAP.md) để xem toàn bộ lộ trình, sau đó trả lời bài **Diagnostic Test (Bài kiểm tra định vị năng lực)** mà AI Mentor gửi cho bạn để xác định chính xác bạn nên bắt đầu từ module nào!
+Hãy bắt đầu với [CACH_HOC.md](CACH_HOC.md) để nắm quy trình học, làm **Diagnostic Test** trong `DIAGNOSTIC_TEST.md`, rồi mở [ROADMAP.md](ROADMAP.md) để chọn module phù hợp với phần còn yếu.
